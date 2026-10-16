@@ -8,6 +8,8 @@ public final class NotificationReaction implements AccountObserver {
     public NotificationReaction(MessageSender sender) { this.sender = Objects.requireNonNull(sender); }
 
     @Override public void onAccountEvent(AccountEvent event) {
-        sender.record(event.recipient(), "Event: " + event.name() + "; customer: " + event.customerName());
+        sender.record(event.recipient(), "Event: " + event.name() + "; customer: " + event.customerName()
+                + "; CPF: " + event.cpf() + "; branch: " + event.branch()
+                + "; account: " + event.accountNumber() + "; balance: " + event.balance().toPlainString());
     }
 }

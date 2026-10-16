@@ -35,12 +35,30 @@ public final class Account {
 
     public void withdraw(BigDecimal amount, TransactionKind kind) {
         validate(amount, kind);
+        BigDecimal before = balance;
         balance = balance.subtract(amount);
+        if (before.signum() >= 0 && balance.signum() < 0)
+            publish(AccountEvent.Name.OVERDRAFT_ENTRY, AccountEvent.Recipient.MANAGER);
+        if (amount.compareTo(new BigDecimal("5000")) >= 0 && amount.compareTo(new BigDecimal("10000")) < 0)
+            publish(AccountEvent.Name.MANAGER_WITHDRAWAL, AccountEvent.Recipient.MANAGER);
+        if (amount.compareTo(new BigDecimal("10000")) >= 0)
+            publish(AccountEvent.Name.SECURITY_WITHDRAWAL, AccountEvent.Recipient.DIGITAL_SECURITY);
     }
 
     public void deposit(BigDecimal amount, TransactionKind kind) {
         validate(amount, kind);
+        BigDecimal before = balance;
         balance = balance.add(amount);
+        BigDecimal threshold = new BigDecimal("50000");
+        if (before.compareTo(threshold) < 0 && balance.compareTo(threshold) >= 0)
+            publish(AccountEvent.Name.INVESTMENT_CROSSING, AccountEvent.Recipient.INVESTMENT_MANAGEMENT);
+    }
+
+    private void publish(AccountEvent.Name name, AccountEvent.Recipient recipient) {
+        AccountEvent event = new AccountEvent(name, recipient, customerName, cpf, branch, accountNumber, balance);
+        for (var subscription : Map.copyOf(observers).entrySet()) {
+            if (subscription.getValue().contains(recipient)) subscription.getKey().onAccountEvent(event);
+        }
     }
 
     private static void validate(BigDecimal amount, TransactionKind kind) {

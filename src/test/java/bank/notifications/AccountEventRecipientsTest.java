@@ -83,7 +83,7 @@ public final class AccountEventRecipientsTest {
             events = observe(account);
             account.deposit(new BigDecimal("1"), kind);
             expect(events);
-            account.withdraw(new BigDecimal("1"), kind);
+            account.withdraw(new BigDecimal("2"), kind);
             expect(events);
             account.deposit(new BigDecimal("1"), kind);
             expect(events, AccountEvent.Name.INVESTMENT_CROSSING);
