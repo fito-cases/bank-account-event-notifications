@@ -1,2 +1,52 @@
-# Finalize against the actual project files after outside-Fito source work.
-artifacts: []
+artifacts:
+  - path: pom.xml
+    role: scaffold
+    description: "Java 21 Maven build and runnable contract suite."
+  - path: mvnw
+    role: scaffold
+    description: "Unix Maven wrapper for running the project checks."
+  - path: mvnw.cmd
+    role: scaffold
+    description: "Windows Maven wrapper for running the project checks."
+  - path: .mvn/wrapper/maven-wrapper.properties
+    role: scaffold
+    description: "Maven wrapper distribution configuration."
+  - path: src/main/java/bank/notifications/Account.java
+    role: target
+    description: "Current-account operations and account activity notifications."
+  - path: src/main/java/bank/notifications/AccountEvent.java
+    role: scaffold
+    description: "Event names, recipients, and account-event information."
+  - path: src/main/java/bank/notifications/AccountObserver.java
+    role: scaffold
+    description: "Account-event listener contract."
+  - path: src/main/java/bank/notifications/MessageSender.java
+    role: scaffold
+    description: "In-process message delivery contract."
+  - path: src/main/java/bank/notifications/NotificationReaction.java
+    role: target
+    description: "Notification reaction and message contents."
+  - path: src/main/java/bank/notifications/SmsSender.java
+    role: scaffold
+    description: "In-process SMS message records."
+  - path: src/main/java/bank/notifications/WhatsAppSender.java
+    role: scaffold
+    description: "In-process WhatsApp message records."
+  - path: src/main/java/bank/notifications/TransactionKind.java
+    role: scaffold
+    description: "Payment, transfer, and Pix transaction kinds."
+  - path: src/test/java/bank/notifications/AccountEventRecipientsTest.java
+    role: evidence
+    description: "Executable checks for event recipients and account-activity boundaries."
+  - path: src/test/java/bank/notifications/NotificationPayloadTest.java
+    role: evidence
+    description: "Executable checks for notification message information."
+  - path: src/test/java/bank/notifications/AccountIsolationTest.java
+    role: evidence
+    description: "Executable checks for account independence from delivery implementations."
+  - path: src/test/java/bank/notifications/AccountTransactionTest.java
+    role: evidence
+    description: "Executable checks for account operations and transaction kinds."
+  - path: src/test/java/bank/notifications/ContractSuiteRunner.java
+    role: scaffold
+    description: "Runner for the project's four contract test classes."

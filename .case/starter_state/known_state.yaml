@@ -1,7 +1,10 @@
-# Pre-source contract: verify and replace with observed test names/results after the starter is built.
+# Observed on the starter: ./mvnw test -q exits 1 (2 failing, 2 passing test classes).
+failing_tests:
+  - AccountEventRecipientsTest
+  - NotificationPayloadTest
 known_errors:
   - type: notification_behavior_incomplete
-    description: "Starter checks for qualifying recipients and threshold crossings must expose incomplete account-event notifications."
+    description: "AccountEventRecipientsTest reports incomplete notifications for qualifying recipients and threshold crossings."
   - type: notification_payload_incomplete
-    description: "Starter checks for required message fields or sender independence must expose unfinished notification behavior."
-build_status: not_applicable
+    description: "NotificationPayloadTest reports incomplete required message fields."
+build_status: failing
