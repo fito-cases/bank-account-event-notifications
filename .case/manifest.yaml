@@ -1,7 +1,7 @@
 title: Bank Account Event Notifications
 type: implementation
 version: "1.0.0"
-status: draft
+status: published
 estimated_duration_minutes: 60
 language: en
 tags: [observer, design-patterns, banking, notifications]
