@@ -1,0 +1,3 @@
+- Payment, transfer, and Pix are transaction-kind inputs to the existing withdrawal/deposit operations, not separate account methods.
+- SMS and WhatsApp remain in-process and testable; no external delivery integration is required.
+- Account operations must not send messages or depend on concrete sender classes.

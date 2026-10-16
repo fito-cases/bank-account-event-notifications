@@ -1,0 +1,21 @@
+learning_objectives:
+  - knowledge_component: concept:design-patterns.observer
+    bloom_level: APPLICATION
+    description: "Apply the Observer pattern to bank-account changes and independent notification recipients."
+    weight: primary
+  - knowledge_component: execution-fact:design-patterns.an-observer-publisher-calls-the-subscriber-interface-without-depending-on-concrete-subscriber-classes
+    bloom_level: APPLICATION
+    description: "Keep account-event publication independent of concrete notification senders."
+    weight: primary
+  - knowledge_component: execution-fact:design-patterns.an-observer-publisher-notifies-registered-subscribers-when-their-event-occurs
+    bloom_level: APPLICATION
+    description: "Deliver each qualifying account event to its intended registered recipients."
+    weight: primary
+  - knowledge_component: execution-fact:design-patterns.an-observer-update-can-expose-event-context-or-its-publisher-to-subscribers-that-need-it
+    bloom_level: APPLICATION
+    description: "Provide observers with the account and event information needed for a notification."
+    weight: secondary
+  - knowledge_component: concept:design-patterns.concrete-observer
+    bloom_level: APPLICATION
+    description: "Implement distinct notification reactions without putting message delivery in the account."
+    weight: secondary

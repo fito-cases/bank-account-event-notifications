@@ -1,0 +1,1 @@
+Implement working account-activity notifications in the Java current-account project so the specified events reach their recipients with complete, accurate messages while the account remains independent of concrete message senders.

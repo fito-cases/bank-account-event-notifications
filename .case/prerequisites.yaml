@@ -1,0 +1,13 @@
+prerequisites:
+  - knowledge_component: concept:design-patterns.design-pattern
+    bloom_level: COMPREHENSION
+    description: "A design pattern describes adaptable roles and collaborations for a recurring problem."
+    mandatory: true
+  - knowledge_component: concept:design-patterns.subject
+    bloom_level: KNOWLEDGE
+    description: "The subject is the source of changes of interest to observers."
+    mandatory: true
+  - knowledge_component: concept:design-patterns.observer-participant
+    bloom_level: KNOWLEDGE
+    description: "An observer participant receives change reports through a shared callback contract."
+    mandatory: true

@@ -1,0 +1,7 @@
+# Pre-source contract: verify and replace with observed test names/results after the starter is built.
+known_errors:
+  - type: notification_behavior_incomplete
+    description: "Starter checks for qualifying recipients and threshold crossings must expose incomplete account-event notifications."
+  - type: notification_payload_incomplete
+    description: "Starter checks for required message fields or sender independence must expose unfinished notification behavior."
+build_status: not_applicable

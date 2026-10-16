@@ -1,0 +1,5 @@
+deliverables:
+  - type: code_change
+    description: "Working Java account-event behavior and distinct, testable in-process SMS and WhatsApp notifications for the requested recipients."
+  - type: test_written
+    description: "Tests covering qualifying and nonqualifying account activity, threshold boundaries, notification contents, and account independence from concrete delivery implementations."

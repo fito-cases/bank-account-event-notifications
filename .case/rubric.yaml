@@ -1,0 +1,106 @@
+criteria:
+  - id: observer-collaboration
+    title: Working Observer collaboration
+    knowledge_component: concept:design-patterns.observer
+    bloom_level: APPLICATION
+    weight: 25
+    levels:
+      - score: 0
+        label: not_achieved
+        description: "Account operations have no working path to notify observers of account events; changes cannot be observed through the intended collaboration."
+      - score: 1
+        label: partial
+        description: "Some account updates reach observers, but registration or dispatch is incomplete, so the collaboration fails for qualifying operations."
+      - score: 2
+        label: achieved
+        description: "Observers can register with the account, and account operations publish qualifying events through a working Observer collaboration."
+      - score: 3
+        label: exemplary
+        description: "The registration and publication collaboration works consistently across withdrawals and incoming transactions, including multiple subscribed observers."
+    evaluation_method:
+      type: ai
+      prompt_hint: "Inspect the Java account and observer code and tests. Verify registration and event dispatch for qualifying withdrawals and incoming transactions; compare each implementation against the four APPLICATION quality rungs."
+  - id: sender-decoupling
+    title: Account independent of concrete senders
+    knowledge_component: execution-fact:design-patterns.an-observer-publisher-calls-the-subscriber-interface-without-depending-on-concrete-subscriber-classes
+    bloom_level: APPLICATION
+    weight: 25
+    levels:
+      - score: 0
+        label: not_achieved
+        description: "The account sends notifications directly or invokes concrete sender APIs, with no effective separation between event publication and delivery."
+      - score: 1
+        label: partial
+        description: "A shared dispatch contract exists, but at least one account path still constructs, imports, or calls a concrete sender."
+      - score: 2
+        label: achieved
+        description: "The account publishes via a shared observer contract without depending on concrete SMS, WhatsApp, or other sender implementations."
+      - score: 3
+        label: exemplary
+        description: "The account stays independent of concrete senders on every operation, and another delivery implementation can be attached without account changes."
+    evaluation_method:
+      type: ai
+      prompt_hint: "Inspect account dependencies, constructors, dispatch calls, observer types, and sender tests; check that concrete sender classes are absent from account code at every notification site."
+  - id: event-recipients
+    title: Correct events and recipients
+    knowledge_component: execution-fact:design-patterns.an-observer-publisher-notifies-registered-subscribers-when-their-event-occurs
+    bloom_level: APPLICATION
+    weight: 25
+    levels:
+      - score: 0
+        label: not_achieved
+        description: "Qualifying account operations fail to notify their intended recipients, including the account manager, digital security, and investment management."
+      - score: 1
+        label: partial
+        description: "Some qualifying events reach the right recipient, but one or more threshold boundaries, crossings, or recipient assignments fail."
+      - score: 2
+        label: achieved
+        description: "Overdraft entry and R$5,000–under-R$10,000 withdrawals reach the account manager; withdrawals of at least R$10,000 reach digital security; incoming crossings to at least R$50,000 reach investment management."
+      - score: 3
+        label: exemplary
+        description: "All four rules and boundary cases work, and nonqualifying operations, repeated below-zero states, and balances already above the investment threshold do not trigger crossing notifications."
+    evaluation_method:
+      type: ai
+      prompt_hint: "Inspect tests and behavior at 0 balance, R$5,000, R$10,000, and R$50,000, including before/after crossings and nonqualifying transactions; verify the intended recipient for each event."
+  - id: notification-context
+    title: Usable notification information
+    knowledge_component: execution-fact:design-patterns.an-observer-update-can-expose-event-context-or-its-publisher-to-subscribers-that-need-it
+    bloom_level: APPLICATION
+    weight: 15
+    levels:
+      - score: 0
+        label: not_achieved
+        description: "Observers cannot obtain sufficient event or account context to form the requested notifications."
+      - score: 1
+        label: partial
+        description: "Observers receive event context, but at least one required field is absent or the resulting balance is incorrect."
+      - score: 2
+        label: achieved
+        description: "Notifications contain the event name, customer name and CPF, branch and account numbers, and resulting balance from the qualifying operation."
+      - score: 3
+        label: exemplary
+        description: "All required fields remain accurate across every qualifying event and recipient, including transactions on threshold boundaries."
+    evaluation_method:
+      type: ai
+      prompt_hint: "Inspect observer inputs, produced messages, and tests for event name, customer name, CPF, branch, account number, and post-operation balance across event kinds."
+  - id: distinct-message-reactions
+    title: Distinct notification implementations
+    knowledge_component: concept:design-patterns.concrete-observer
+    bloom_level: APPLICATION
+    weight: 10
+    levels:
+      - score: 0
+        label: not_achieved
+        description: "No working notification reaction exists outside the account."
+      - score: 1
+        label: partial
+        description: "Some in-process notifications work, but SMS and WhatsApp are not distinct, working implementations."
+      - score: 2
+        label: achieved
+        description: "SMS and WhatsApp have separate, working, testable in-process implementations outside the account."
+      - score: 3
+        label: exemplary
+        description: "Both implementations can be selected or combined for recipients without changing account behavior, and their results can be checked independently."
+    evaluation_method:
+      type: ai
+      prompt_hint: "Inspect concrete notification implementations and tests; verify separate SMS and WhatsApp behavior, in-process testability, and independence from the account."
