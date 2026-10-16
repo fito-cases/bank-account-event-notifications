@@ -12,4 +12,4 @@ Build an account publisher with a shared observer callback, registration, and ev
 
 # Post-source review
 
-After the starter and exemplar are built outside Fito, replace assumptions above with actual code/test evidence, confirm the baseline in known_state.yaml, and finalize artifacts.yaml against the real tree.
+On `main`, `./mvnw test -q` exits 1: `AccountEventRecipientsTest` and `NotificationPayloadTest` fail; `AccountIsolationTest` and `AccountTransactionTest` pass. `Account.withdraw` and `Account.deposit` change the balance but do not publish events to registered observers. `NotificationReaction.onAccountEvent` currently records the event name and customer name without CPF, branch, account number, or resulting balance. The scaffold already has `AccountEvent`, `AccountObserver`, `MessageSender`, in-process `SmsSender`/`WhatsAppSender`, and the contract suite in `pom.xml`. The exemplar is on `case/solution-v1.0.0`; use the actual code and test results there when scoring, rather than assuming that the starter's failures describe the exemplar.
